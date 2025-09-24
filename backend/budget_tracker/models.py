@@ -1,14 +1,17 @@
 from django.db import models
 
+
 class Campaign(models.Model):
     """
     Represents a marketing campaign with a set budget and spend.
     Status is computed dynamically based on the spend compared to budget.
     """
     name = models.CharField(max_length=255)
+    # TODO should budget be decimal or int?
     budget = models.DecimalField(max_digits=10, decimal_places=2)
     spend = models.DecimalField(max_digits=10, decimal_places=2)
 
+    # TODO should this be a property?
     @property
     def status(self) -> str:
         """
