@@ -1,4 +1,4 @@
-name: flake8 linting
+name: Python Lint & Test
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
       - '**/*.py'
 
 jobs:
-  lint:
+  lint-and-test:
     runs-on: ubuntu-latest
     steps:
       - name: Check out code
@@ -20,9 +20,17 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Install flake8
+      - name: Install dependencies
         run: |
+          pip install --upgrade pip
           pip install flake8
+          pip install -r requirements.txt  # make sure your Django project dependencies are listed here
 
       - name: Run flake8
         run: flake8 . --max-line-length=127
+
+      - name: Run Django tests
+        env:
+          DJANGO_SETTINGS_MODULE: backend.settings
+        run: |
+          python manage.py test
