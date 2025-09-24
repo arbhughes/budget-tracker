@@ -1,0 +1,33 @@
+name: Python Lint & Test
+
+on:
+  pull_request:
+    paths:
+      - '**/*.py'
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install pipenv
+        run: pip install --upgrade pip pipenv
+
+      - name: Install dependencies via Pipenv
+        run: pipenv install --dev --deploy
+
+      - name: Run flake8
+        run: pipenv run flake8 . --max-line-length=127
+
+      - name: Run Django tests
+        working-directory: backend
+        env:
+          DJANGO_SETTINGS_MODULE: backend.settings
+        run: pipenv run python manage.py test
