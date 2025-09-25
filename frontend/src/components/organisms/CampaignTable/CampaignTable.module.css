@@ -1,0 +1,7 @@
+.table {
+  @apply min-w-full border border-gray-200 rounded-lg shadow-sm overflow-hidden;
+}
+
+.body {
+  @apply bg-white;
+}
