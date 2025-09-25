@@ -45,6 +45,7 @@ export default function CampaignForm({
           type="number"
           value={budget}
           onChange={onChange}
+          step="0.01"
         />
         <FormRow
           id="spend"
@@ -52,6 +53,7 @@ export default function CampaignForm({
           type="number"
           value={spend}
           onChange={onChange}
+          step="0.01"
         />
       </div>
 

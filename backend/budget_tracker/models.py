@@ -1,4 +1,5 @@
 from django.db import models
+from decimal import Decimal
 
 
 class Campaign(models.Model):
@@ -17,10 +18,10 @@ class Campaign(models.Model):
         """
         Derives the campaign status from spend vs budget.
         """
-        if self.spend > 1.1 * self.budget:
+        if self.spend > Decimal("1.1") * self.budget:
             return "Overspending"
 
-        if self.spend < 0.9 * self.budget:
+        if self.spend < Decimal("0.9") * self.budget:
             return "Underspending"
 
         return "On track"

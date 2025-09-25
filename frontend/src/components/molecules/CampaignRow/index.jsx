@@ -22,8 +22,9 @@ export default function CampaignRow({ name, budget, spend, status }) {
   return (
     <tr>
       <td className={styles.cell}>{name}</td>
-      <td className={styles.cell}>${budget}</td>
-      <td className={styles.cell}>${spend}</td>
+      {/* Assume GBP for now, and round to whole number - pennies too precise for a budget tracker */}
+      <td className={styles.cell}>£{Math.round(budget)}</td>
+      <td className={styles.cell}>£{Math.round(spend)}</td>
       <td className={styles.statusCell}>
         <Chip label={status} variant={statusVariantMap[status]} />
       </td>
