@@ -2,7 +2,6 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
-# TODO make sure import works when packaging with Docker
 from budget_tracker.views import CampaignViewSet
 
 router = DefaultRouter()

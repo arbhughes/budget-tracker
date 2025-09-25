@@ -8,11 +8,10 @@ class Campaign(models.Model):
     Status is computed dynamically based on the spend compared to budget.
     """
     name = models.CharField(max_length=255)
-    # TODO should budget be decimal or int?
+    # Allow budget / spend to be decimals, they will render as integers on the frontend
     budget = models.DecimalField(max_digits=10, decimal_places=2)
     spend = models.DecimalField(max_digits=10, decimal_places=2)
 
-    # TODO should this be a property?
     @property
     def status(self) -> str:
         """

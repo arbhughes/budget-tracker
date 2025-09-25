@@ -1,6 +1,6 @@
 import axios from "axios";
 
-// TODO think about how to not hardcode URL
+// TODO - if using in a non-development environment, get base URL from .env
 const apiClient = axios.create({
   baseURL: "http://localhost:8000/api",
   headers: {
