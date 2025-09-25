@@ -1,3 +1,15 @@
 .headerCell {
-  @apply px-4 py-2 text-left font-semibold text-gray-700 bg-gray-50 border-b border-gray-200;
+  @apply px-4 py-2 text-left font-semibold text-gray-700 bg-gray-50 border-b border-gray-200 whitespace-nowrap;
+}
+
+.sortIconWrapper {
+  @apply inline-flex items-center justify-center w-4; /* fixed width for arrow */
+}
+
+.sortIcon {
+  @apply text-gray-400 h-3 w-3;
+}
+
+.sortPlaceholder {
+  @apply inline-block h-3 w-3; /* invisible placeholder keeps alignment */
 }
