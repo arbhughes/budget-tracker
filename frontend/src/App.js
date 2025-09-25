@@ -1,10 +1,9 @@
 import './App.css';
-import Button from "./components/atoms/Button";
-import Chip from './components/atoms/Chip'
+import BudgetTrackerPage from "./components/pages/BudgetTrackerPage";
 
 function App() {
   return (
-      <Chip label={"bello!"} variant={"success"} />
+      <BudgetTrackerPage />
   );
 }
 
