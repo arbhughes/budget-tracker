@@ -1,4 +1,5 @@
 from django.db import models
+from decimal import Decimal
 
 
 class Campaign(models.Model):
@@ -7,23 +8,22 @@ class Campaign(models.Model):
     Status is computed dynamically based on the spend compared to budget.
     """
     name = models.CharField(max_length=255)
-    # TODO should budget be decimal or int?
+    # Allow budget / spend to be decimals, they will render as integers on the frontend
     budget = models.DecimalField(max_digits=10, decimal_places=2)
     spend = models.DecimalField(max_digits=10, decimal_places=2)
 
-    # TODO should this be a property?
     @property
     def status(self) -> str:
         """
         Derives the campaign status from spend vs budget.
         """
-        if self.spend > 1.1 * self.budget:
+        if self.spend > Decimal("1.1") * self.budget:
             return "Overspending"
 
-        if self.spend < 0.9 * self.budget:
+        if self.spend < Decimal("0.9") * self.budget:
             return "Underspending"
 
         return "On track"
 
     def __str__(self):
-        return f'{self.name} (£{self.spend} / £{self.budget})'
+        return f"{self.name} (£{self.spend:.2f} / £{self.budget:.2f})"

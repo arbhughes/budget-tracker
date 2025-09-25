@@ -30,6 +30,7 @@ export default function FormRow({
   onChange,
   placeholder,
   isDisabled,
+  ...props
 }) {
   return (
     <div className={styles.formRow}>
@@ -43,6 +44,7 @@ export default function FormRow({
         onChange={onChange}
         placeholder={placeholder}
         isDisabled={isDisabled}
+        {...props}
       />
     </div>
   );

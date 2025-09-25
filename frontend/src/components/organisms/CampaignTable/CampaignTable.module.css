@@ -1,7 +1,25 @@
 .table {
-  @apply min-w-full border border-gray-200 rounded-lg shadow-sm overflow-hidden;
+  @apply w-full border-collapse table-fixed;
 }
 
-.body {
-  @apply bg-white;
+.table th {
+  @apply px-4 py-2 text-left font-medium text-gray-700 cursor-pointer select-none whitespace-nowrap;
+}
+
+.table td {
+  @apply px-4 py-2 border-t;
+}
+
+/* Reserve a fixed space for the sort icon */
+.sort-icon-wrapper {
+  @apply inline-flex items-center justify-center w-4; /* fixed width */
+}
+
+.sort-icon {
+  @apply text-gray-400 h-3 w-3;
+}
+
+/* Invisible placeholder for inactive columns */
+.sort-placeholder {
+  @apply inline-block h-3 w-3;
 }

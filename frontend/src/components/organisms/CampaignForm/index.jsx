@@ -10,8 +10,7 @@ CampaignForm.propTypes = {
   name: PropTypes.string.isRequired,
   budget: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   spend: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-  status: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,  // handles controlled inputs
+  onChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   isSubmitting: PropTypes.bool,
 };
@@ -24,7 +23,6 @@ export default function CampaignForm({
   name,
   budget,
   spend,
-  status,
   onChange,
   onSubmit,
   isSubmitting,
@@ -38,35 +36,29 @@ export default function CampaignForm({
         value={name}
         onChange={onChange}
       />
-      <FormRow
-        id="budget"
-        label="Budget"
-        type="number"
-        value={budget}
-        onChange={onChange}
-      />
-      <FormRow
-        id="spend"
-        label="Spend"
-        type="number"
-        value={spend}
-        onChange={onChange}
-      />
-      <FormRow
-        id="status"
-        label="Status"
-        type="text"
-        value={status}
-        onChange={onChange}
-        placeholder='e.g. "On track"'
-      />
+
+      {/* Budget + Spend side by side */}
+      <div className="grid grid-cols-2 gap-4">
+        <FormRow
+          id="budget"
+          label="Budget"
+          type="number"
+          value={budget}
+          onChange={onChange}
+          step="0.01"
+        />
+        <FormRow
+          id="spend"
+          label="Spend"
+          type="number"
+          value={spend}
+          onChange={onChange}
+          step="0.01"
+        />
+      </div>
 
       <div className={styles.actions}>
-        <Button
-          type="submit"
-          variant="primary"
-          isDisabled={isSubmitting}
-        >
+        <Button type="submit" variant="primary" isDisabled={isSubmitting}>
           {isSubmitting ? "Saving..." : "Add Campaign"}
         </Button>
       </div>
