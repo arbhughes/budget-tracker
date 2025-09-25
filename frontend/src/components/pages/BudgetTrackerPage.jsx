@@ -25,7 +25,6 @@ export default function BudgetTrackerPage() {
     status: "On track",
   });
 
-  // Fetch on mount
   useEffect(() => {
     async function loadCampaigns() {
       try {
@@ -75,7 +74,6 @@ export default function BudgetTrackerPage() {
           name={formState.name}
           budget={formState.budget}
           spend={formState.spend}
-          status={formState.status}
           onChange={handleChange}
           onSubmit={handleSubmit}
         />

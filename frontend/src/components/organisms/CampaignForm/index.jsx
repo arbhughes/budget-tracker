@@ -10,8 +10,7 @@ CampaignForm.propTypes = {
   name: PropTypes.string.isRequired,
   budget: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   spend: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-  status: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,  // handles controlled inputs
+  onChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   isSubmitting: PropTypes.bool,
 };
@@ -24,7 +23,6 @@ export default function CampaignForm({
   name,
   budget,
   spend,
-  status,
   onChange,
   onSubmit,
   isSubmitting,
@@ -52,15 +50,6 @@ export default function CampaignForm({
         value={spend}
         onChange={onChange}
       />
-      <FormRow
-        id="status"
-        label="Status"
-        type="text"
-        value={status}
-        onChange={onChange}
-        placeholder='e.g. "On track"'
-      />
-
       <div className={styles.actions}>
         <Button
           type="submit"
