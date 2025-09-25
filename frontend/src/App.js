@@ -1,10 +1,10 @@
-import logo from './logo.svg';
 import './App.css';
-import CampaignsPage from "./components/pages/sample";
+import Button from "./components/atoms/Button";
+import Chip from './components/atoms/Chip'
 
 function App() {
   return (
-    <CampaignsPage />
+      <Chip label={"bello!"} variant={"success"} />
   );
 }
 
