@@ -36,26 +36,27 @@ export default function CampaignForm({
         value={name}
         onChange={onChange}
       />
-      <FormRow
-        id="budget"
-        label="Budget"
-        type="number"
-        value={budget}
-        onChange={onChange}
-      />
-      <FormRow
-        id="spend"
-        label="Spend"
-        type="number"
-        value={spend}
-        onChange={onChange}
-      />
+
+      {/* Budget + Spend side by side */}
+      <div className="grid grid-cols-2 gap-4">
+        <FormRow
+          id="budget"
+          label="Budget"
+          type="number"
+          value={budget}
+          onChange={onChange}
+        />
+        <FormRow
+          id="spend"
+          label="Spend"
+          type="number"
+          value={spend}
+          onChange={onChange}
+        />
+      </div>
+
       <div className={styles.actions}>
-        <Button
-          type="submit"
-          variant="primary"
-          isDisabled={isSubmitting}
-        >
+        <Button type="submit" variant="primary" isDisabled={isSubmitting}>
           {isSubmitting ? "Saving..." : "Add Campaign"}
         </Button>
       </div>

@@ -22,7 +22,6 @@ export default function BudgetTrackerPage() {
     name: "",
     budget: "",
     spend: "",
-    status: "On track",
   });
 
   useEffect(() => {
@@ -49,10 +48,9 @@ export default function BudgetTrackerPage() {
         name: formState.name,
         budget: Number(formState.budget),
         spend: Number(formState.spend),
-        status: formState.status,
       });
       setCampaigns((prev) => [...prev, newCampaign]);
-      setFormState({ name: "", budget: "", spend: "", status: "On track" });
+      setFormState({ name: "", budget: "", spend: "" });
     } catch (err) {
       console.error("Error creating campaign:", err);
     }
@@ -64,7 +62,11 @@ export default function BudgetTrackerPage() {
         <Heading level={1}>Budget Tracker</Heading>
       </div>
 
-      <CampaignTable campaigns={campaigns} />
+      {campaigns.length === 0 ? (
+        <p className="text-gray-500">No campaigns yet. Add one below!</p>
+      ) : (
+        <CampaignTable campaigns={campaigns} />
+      )}
 
       <div className="mt-8">
         <Heading level={2} className="mb-4">
