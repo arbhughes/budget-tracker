@@ -54,7 +54,8 @@ Once running, access the frontend of the app at:
 
 ## First time database setup
 
-Run migrations to initialise the SQLite database inside the backend container:
+Run migrations to initialise the SQLite database inside the backend container.  
+To do this, open a new terminal window and cd into the `budget-tracker` project you cloned. Run the follwoing:
 
 ```bash
 docker compose run backend python manage.py migrate
