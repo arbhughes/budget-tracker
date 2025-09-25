@@ -12,6 +12,14 @@ CampaignRow.propTypes = {
   status: PropTypes.oneOf(["On track", "Overspending", "Underspending"]).isRequired,
 };
 
+// Currency formatter (GBP, no pennies)
+const currencyFormatter = new Intl.NumberFormat("en-GB", {
+  style: "currency",
+  currency: "GBP",
+  minimumFractionDigits: 0,
+  maximumFractionDigits: 0,
+});
+
 const statusVariantMap = {
   "On track": "success",
   "Overspending": "error",
@@ -22,9 +30,8 @@ export default function CampaignRow({ name, budget, spend, status }) {
   return (
     <tr>
       <td className={styles.cell}>{name}</td>
-      {/* Assume GBP for now, and round to whole number - pennies too precise for a budget tracker */}
-      <td className={styles.cell}>£{Math.round(budget)}</td>
-      <td className={styles.cell}>£{Math.round(spend)}</td>
+      <td className={styles.cell}>{currencyFormatter.format(budget)}</td>
+      <td className={styles.cell}>{currencyFormatter.format(spend)}</td>
       <td className={styles.statusCell}>
         <Chip label={status} variant={statusVariantMap[status]} />
       </td>

@@ -26,4 +26,4 @@ class Campaign(models.Model):
         return "On track"
 
     def __str__(self):
-        return f'{self.name} (£{self.spend} / £{self.budget})'
+        return f"{self.name} (£{self.spend:.2f} / £{self.budget:.2f})"
