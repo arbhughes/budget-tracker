@@ -1,18 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import Heading from "../atoms/Heading";
-import Button from "../atoms/Button";
 import CampaignTable from "../organisms/CampaignTable";
 import CampaignForm from "../organisms/CampaignForm";
 
+import apiClient from "../../services/ApiClient";
+
+export const getCampaigns = async () => {
+  const res = await apiClient.get("/campaigns/");
+  return res.data;
+};
+
+export const createCampaign = async (campaign) => {
+  const res = await apiClient.post("/campaigns/", campaign);
+  return res.data;
+};
 
 export default function BudgetTrackerPage() {
-  const [campaigns, setCampaigns] = useState([
-    { name: "Winter Sale", budget: 10000, spend: 2500, status: "On track" },
-    { name: "Spring Promotion", budget: 5000, spend: 3000, status: "Underspending" },
-    { name: "Summer Campaign", budget: 8000, spend: 4000, status: "On track" },
-  ]);
-
+  const [campaigns, setCampaigns] = useState([]);
   const [formState, setFormState] = useState({
     name: "",
     budget: "",
@@ -20,23 +25,38 @@ export default function BudgetTrackerPage() {
     status: "On track",
   });
 
+  // Fetch on mount
+  useEffect(() => {
+    async function loadCampaigns() {
+      try {
+        const data = await getCampaigns();
+        setCampaigns(data);
+      } catch (err) {
+        console.error("Error fetching campaigns:", err);
+      }
+    }
+    loadCampaigns();
+  }, []);
+
   const handleChange = (e) => {
     const { id, value } = e.target;
     setFormState((prev) => ({ ...prev, [id]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setCampaigns((prev) => [
-      ...prev,
-      {
+    try {
+      const newCampaign = await createCampaign({
         name: formState.name,
         budget: Number(formState.budget),
         spend: Number(formState.spend),
-        status: formState.status || "On track",
-      },
-    ]);
-    setFormState({ name: "", budget: "", spend: "", status: "On track" });
+        status: formState.status,
+      });
+      setCampaigns((prev) => [...prev, newCampaign]);
+      setFormState({ name: "", budget: "", spend: "", status: "On track" });
+    } catch (err) {
+      console.error("Error creating campaign:", err);
+    }
   };
 
   return (
@@ -44,13 +64,13 @@ export default function BudgetTrackerPage() {
       <div className="flex items-center justify-between mb-6">
         <Heading level={1}>Budget Tracker</Heading>
       </div>
-        <CampaignTable campaigns={campaigns} />
 
-      <div className="flex items-center justify-between mb-6">
-      </div>
+      <CampaignTable campaigns={campaigns} />
 
       <div className="mt-8">
-      <Heading level={2} className={"mb-4"}>Add a new campaign</Heading>
+        <Heading level={2} className="mb-4">
+          Add a new campaign
+        </Heading>
         <CampaignForm
           name={formState.name}
           budget={formState.budget}
