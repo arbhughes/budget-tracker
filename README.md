@@ -1,6 +1,8 @@
 # Budget Tracker
 
-A simple full stack app for tracking campaign budgets and spend. The backend is powered by Django and Django REST Framework.  
+A simple full stack app for tracking campaign budgets and spend.
+
+The backend is powered by Django and Django REST Framework.  
 The frontend is built with React, Tailwind, and Axios for API calls.  
 
 The whole project is containerised with Docker for easy setup and development.
@@ -20,17 +22,18 @@ You do not need Python or Node installed locally, as both services run inside co
    cd budget-tracker
    ```
 
-2. Copy the example environment files. The defaults will work for local development.  
+2. Copy the example environment files. The defaults will work for local development.   
+   
    The backend `.env` controls Django settings such as the secret key, debug mode, and allowed hosts.  
-   No updates are required, but you may change `DJANGO_SECRET_KEY` if desired.  
+   No updates are required, but you may change `DJANGO_SECRET_KEY` if desired.
    The frontend `.env` points React to the backend API.
 
-   Backend:
+   **Backend**:
    ```bash
    cp backend/.env.sample backend/.env
    ```
 
-   Frontend:
+   **Frontend**:
    ```bash
    cp frontend/.env.sample frontend/.env
    ```
