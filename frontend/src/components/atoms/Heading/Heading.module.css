@@ -1,0 +1,29 @@
+/* Base */
+.heading {
+  @apply font-semibold text-gray-900;
+}
+
+/* Sizes by level */
+.h1 {
+  @apply text-3xl leading-tight;
+}
+
+.h2 {
+  @apply text-2xl leading-snug;
+}
+
+.h3 {
+  @apply text-xl leading-snug;
+}
+
+.h4 {
+  @apply text-lg leading-snug;
+}
+
+.h5 {
+  @apply text-base leading-normal;
+}
+
+.h6 {
+  @apply text-sm leading-normal;
+}

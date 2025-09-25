@@ -1,0 +1,7 @@
+.formRow {
+  @apply mb-4 block;
+}
+
+.label {
+  @apply mb-1;
+}
